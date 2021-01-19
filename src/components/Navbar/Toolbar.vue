@@ -1,6 +1,10 @@
 <template>
   <div class="toolbar">
-    <a class="menu-item" v-for="item of menuItems" :key="item">{{ item }}</a>
+    <div v-for="item of menuItems" :key="item">
+      <router-link class="menu-item" :to="item.route">
+        {{ item.title }}
+      </router-link>
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -9,7 +13,11 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "Toolbar",
   setup() {
-    const menuItems = ["jogs", "info", "contact us"];
+    const menuItems = [
+      { title: "jogs", route: "/" },
+      { title: "info", route: "/info" },
+      { title: "contact us", route: "/contact-us" },
+    ];
     return {
       menuItems,
     };
@@ -18,9 +26,14 @@ export default defineComponent({
 </script>
 <style lang="less" scoped>
 .toolbar {
-  height: 100%;
+  display: flex;
+  align-items: center;
   .menu-item {
+    display: flex;
+    align-items: center;
+    height: 100%;
     margin-right: 46px;
+    text-transform: uppercase;
   }
 }
 </style>

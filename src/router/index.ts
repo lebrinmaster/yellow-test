@@ -3,8 +3,8 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Home',
-    component: () => import('../views/Home.vue'),
+    name: 'Jogs',
+    component: () => import('../views/Jogs.vue'),
     meta: { authRequired: true },
     beforeEnter(to, from, next) {
       if(localStorage.getItem('token') !== null) {

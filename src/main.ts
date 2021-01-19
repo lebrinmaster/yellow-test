@@ -11,12 +11,10 @@ axios.defaults.baseURL = "https://jogtracker.herokuapp.com/api/";
 
 axios.interceptors.request.use(
     async config => {
-        console.log(config);
         config.headers = { 
             'Authorization': testToken,
             'Accept': 'application/json',
         }
-      console.log(config);
       return config;
     },
     error => {
