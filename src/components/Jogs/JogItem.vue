@@ -2,7 +2,7 @@
   <div class="jog-item">
     <img src="@/assets/images/jog-icon.png" />
     <div class="item-info">
-      <span>{{ date }}</span>
+      <span>{{ formattedDate }}</span>
       <span>{{ speed }}</span>
       <span>{{ distance }}</span>
       <span>{{ time }}</span>
@@ -10,15 +10,23 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
 
 export default defineComponent({
   name: "JogItem",
   props: {
-    date: String,
-    speed: String,
-    distance: String,
-    time: String,
+    date: Number,
+    speed: Number,
+    distance: Number,
+    time: Number,
+  },
+  setup(props: { date: any }) {
+    const formattedDate = computed(() => {
+      return new Date(props.date).toLocaleDateString();
+    });
+    return {
+      formattedDate,
+    };
   },
 });
 </script>

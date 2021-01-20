@@ -18,7 +18,7 @@ export default defineComponent({
 </script>
 <style lang="less" scoped>
 img {
-  position: absolute;
+  position: fixed;
   padding: 40px;
   bottom: 0;
   right: 0;

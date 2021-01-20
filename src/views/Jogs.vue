@@ -1,9 +1,12 @@
 <template>
   <div class="jogs">
     <div v-if="!addingForm">
-      <JogsSubHeader />
+      <JogsSubHeader
+        @dateToChange="handleDateToChange"
+        @dateFromChange="handleDateFromChange"
+      />
       <JogItem
-        v-for="item of jogs"
+        v-for="item of formattedJogs"
         :key="item.id"
         class="jog-item"
         :date="item.date"
@@ -18,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, computed } from "vue";
+import { defineComponent, ref, onMounted, computed, reactive } from "vue";
 import { useStore } from "vuex";
 
 import JogsSubHeader from "../components/Jogs/JogsSubHeader.vue";
@@ -38,19 +41,36 @@ export default defineComponent({
     const $store = useStore();
     const addingForm = ref(false);
     const jogs = computed(() => $store.getters.allJogs);
+    const dates = ref([]);
+    const dateCondition: {
+      dateFrom: number;
+      dateTo: number;
+    } = reactive({ dateFrom: 0, dateTo: Date.now() });
     const openJogForm = () => {
-      console.log("trigger");
       addingForm.value = true;
-      console.log(jogs.value);
     };
     const getJogs = onMounted(() => {
       $store.dispatch("getjogs");
     });
+
+    const formattedJogs = computed(() => $store.getters.formattedJogs);
+
+    const handleDateToChange = (data: any) => {
+      dateCondition.dateTo = Date.parse(data);
+      $store.commit("setFormattedJogs", dateCondition);
+    };
+    const handleDateFromChange = (data: any) => {
+      dateCondition.dateFrom = Date.parse(data);
+      $store.commit("setFormattedJogs", dateCondition);
+    };
     return {
       addingForm,
       openJogForm,
       getJogs,
       jogs,
+      handleDateToChange,
+      handleDateFromChange,
+      formattedJogs,
     };
   },
 });

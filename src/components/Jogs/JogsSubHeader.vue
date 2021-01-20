@@ -1,16 +1,42 @@
 <template>
   <div class="jogs-subheader">
     <label for="dateFrom">Date from</label>
-    <input id="dateFrom" />
+    <input
+      type="date"
+      id="dateFrom"
+      pattern="\d{1,2}.\d{1,2}.\d{4}"
+      v-model="dateFrom"
+    />
     <label for="dateTo">Date to</label>
-    <input id="dateTo" />
+    <input
+      type="date"
+      id="dateTo"
+      pattern="\d{1,2}.\d{1,2}.\d{4}"
+      v-model="dateTo"
+    />
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref, watch } from "vue";
 
 export default defineComponent({
   name: "JogsSubHeader",
+  setup(_, { emit }) {
+    const dateFrom = ref("");
+    const dateTo = ref("");
+    const dateToWatch = watch(dateTo, (newVal, oldVal) => {
+      emit("dateToChange", newVal);
+    });
+    const dateFromWatch = watch(dateFrom, (newVal, oldVal) => {
+      emit("dateFromChange", newVal);
+    });
+    return {
+      dateTo,
+      dateFrom,
+      dateToWatch,
+      dateFromWatch,
+    };
+  },
 });
 </script>
 <style lang="less" scoped>
