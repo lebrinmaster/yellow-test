@@ -22,7 +22,7 @@ export default defineComponent({
   },
   setup(props: { date: any }) {
     const formattedDate = computed(() => {
-      return new Date(props.date).toLocaleDateString();
+      return new Date(props.date * 1000).toLocaleDateString();
     });
     return {
       formattedDate,
@@ -33,6 +33,9 @@ export default defineComponent({
 <style lang="less" scoped>
 .jog-item {
   display: flex;
+  &:hover {
+    cursor: pointer;
+  }
   .item-info {
     margin-left: 46px;
     display: flex;

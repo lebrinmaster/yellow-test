@@ -5,13 +5,18 @@
         {{ item.title }}
       </router-link>
     </div>
+    <FilterToggle />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
+import FilterToggle from "./FilterToggle.vue";
 
 export default defineComponent({
   name: "Toolbar",
+  components: {
+    FilterToggle,
+  },
   setup() {
     const menuItems = [
       { title: "jogs", route: "/" },

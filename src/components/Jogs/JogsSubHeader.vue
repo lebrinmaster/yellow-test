@@ -24,10 +24,11 @@ export default defineComponent({
   setup(_, { emit }) {
     const dateFrom = ref("");
     const dateTo = ref("");
-    const dateToWatch = watch(dateTo, (newVal, oldVal) => {
+    const dateToWatch = watch(dateTo, (newVal) => {
+      console.log(newVal);
       emit("dateToChange", newVal);
     });
-    const dateFromWatch = watch(dateFrom, (newVal, oldVal) => {
+    const dateFromWatch = watch(dateFrom, (newVal) => {
       emit("dateFromChange", newVal);
     });
     return {

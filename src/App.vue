@@ -12,9 +12,3 @@ export default defineComponent({
   },
 });
 </script>
-<style lang="less" scoped>
-body {
-  margin: 0;
-  padding: 0;
-}
-</style>

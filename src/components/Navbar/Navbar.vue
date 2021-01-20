@@ -1,6 +1,8 @@
 <template>
   <div class="navbar">
-    <img src="@/assets/images/logo.png" />
+    <router-link :to="'/'">
+      <img src="@/assets/images/logo.png" />
+    </router-link>
     <Toolbar />
   </div>
 </template>
@@ -21,7 +23,6 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   background-color: #7ed321;
-  height: 100%;
   max-height: 116px;
   padding: 30px 37px;
 }

@@ -19,9 +19,8 @@ export default defineComponent({
 <style lang="less" scoped>
 img {
   position: fixed;
-  padding: 40px;
-  bottom: 0;
-  right: 0;
+  bottom: 40px;
+  right: 40px;
 
   &:hover {
     cursor: pointer;
