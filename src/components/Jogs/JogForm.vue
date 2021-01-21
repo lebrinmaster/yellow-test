@@ -80,7 +80,7 @@ export default defineComponent({
           time: jogFormData.value.time,
           distance: jogFormData.value.distance,
           jog_id: jogFormData.value.id /* eslint-disable-line */,
-          user_id: user.value /* eslint-disable-line */,
+          user_id: user.value.id /* eslint-disable-line */,
         };
         console.log(payload);
         $store

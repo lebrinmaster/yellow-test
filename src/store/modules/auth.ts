@@ -7,9 +7,6 @@ const authModule = {
       user: null,
   },
   mutations: {
-    setUser(state: any, user: any) {
-      state.user = user;
-    },
     logout(state: any, user: any) {
       state.user = user;
     },
