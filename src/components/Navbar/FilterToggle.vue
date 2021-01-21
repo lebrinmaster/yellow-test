@@ -21,8 +21,12 @@ export default defineComponent({
   setup() {
     const $store = useStore();
     const datePanelState = computed(() => $store.getters.datePanelState);
-    const toggleDatePanel = (state: boolean) =>
-      $store.commit("setDatePanelState", state);
+    const jogsFormState = computed(() => $store.getters.jogsFormState);
+    const toggleDatePanel = (state: boolean) => {
+      if (!jogsFormState.value) {
+        $store.commit("setDatePanelState", state);
+      }
+    };
     return {
       datePanelState,
       toggleDatePanel,
