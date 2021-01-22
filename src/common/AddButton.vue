@@ -1,17 +1,24 @@
 <template>
-  <img src="@/assets/images/add.png" @click="openJogForm" />
+  <img
+    src="@/assets/images/add.png"
+    @click="openJogForm"
+    :height="buttonSize"
+    :width="buttonSize"
+  />
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "AddButton",
   setup() {
-    const openJogForm = () => {
-      console.log("open jog form");
-    };
+    const $store = useStore();
+    const isMobile = computed(() => $store.getters.getWindowSize);
+    const buttonSize = computed(() => (isMobile.value ? 47 : 60));
     return {
-      openJogForm,
+      isMobile,
+      buttonSize,
     };
   },
 });

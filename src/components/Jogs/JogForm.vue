@@ -1,6 +1,6 @@
 <template>
   <div class="jog-form-wrapper">
-    <div class="jog-form">
+    <div class="jog-form" :class="{ mobile: isMobile }">
       <i class="close-button" @click="closeJogsForm">X</i>
       <form class="form" @submit="onSubmit">
         <div class="form-input">
@@ -38,6 +38,7 @@ export default defineComponent({
     });
     const forUpdate = computed(() => $store.getters.jogFormCondition);
     const user = computed(() => $store.getters.user);
+    const isMobile = computed(() => $store.getters.getWindowSize);
     const distance = useField("distance", {
       rule: {
         required: false,
@@ -68,13 +69,11 @@ export default defineComponent({
           time: jogFormData.value.time,
           distance: jogFormData.value.distance,
         };
-        console.log(payload);
         $store
           .dispatch("postNewJogItem", payload)
           .then(() => $store.commit("setJogsForm", null))
           .finally(() => $store.commit("toggleJogsFormState", false));
       } else {
-        console.log(user);
         const payload = {
           date: jogFormData.value.date,
           time: jogFormData.value.time,
@@ -82,7 +81,6 @@ export default defineComponent({
           jog_id: jogFormData.value.id /* eslint-disable-line */,
           user_id: user.value.id /* eslint-disable-line */,
         };
-        console.log(payload);
         $store
           .dispatch("updateJogItem", payload)
           .then(() => $store.dispatch("getJogs"))
@@ -99,6 +97,7 @@ export default defineComponent({
       jogFormData,
       forUpdate,
       user,
+      isMobile,
     };
   },
 });
@@ -139,6 +138,24 @@ export default defineComponent({
         }
         input {
           width: 236px;
+        }
+      }
+    }
+  }
+  .mobile {
+    border-radius: 29px;
+    padding: 0;
+    padding-bottom: 33px;
+    margin: 0 36px;
+    .form {
+      padding: 0;
+      margin: 0 36px;
+      .form-input {
+        input {
+          width: 170px;
+        }
+        #date {
+          width: 172px;
         }
       }
     }

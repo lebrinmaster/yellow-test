@@ -12,12 +12,10 @@ const jogsModule = {
   },
   mutations: {
     setJogs(state: any, jogs: any) {
-      console.log(jogs);
       state.jogs = jogs;
       state.formattedJogs = jogs;
     },
     setUser(state: any, user: any) {
-      console.log(user);
       state.user = user;
     },
     setFormattedJogs(state: any, {dateFrom, dateTo}: any) {
@@ -27,7 +25,6 @@ const jogsModule = {
       return state.formattedJogs;
     },
     toggleJogsFormState(state: any, condition: boolean) {
-      console.log(condition);
       return state.jogsFormState = condition;
     },
     setJogsForm(state: any, {distance, time, date, id}: any) {

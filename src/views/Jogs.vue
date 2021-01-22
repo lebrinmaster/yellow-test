@@ -74,6 +74,7 @@ export default defineComponent({
     });
 
     const formattedJogs = computed(() => $store.getters.formattedJogs);
+    const isMobile = computed(() => $store.getters.getWindowSize);
 
     const handleDateToChange = (data: any) => {
       dateCondition.dateTo = Date.parse(data);
@@ -92,6 +93,7 @@ export default defineComponent({
       handleDateToChange,
       handleDateFromChange,
       formattedJogs,
+      isMobile,
     };
   },
 });
@@ -101,7 +103,6 @@ export default defineComponent({
   .jog-item {
     display: flex;
     justify-content: center;
-    margin-top: 53px;
   }
 }
 </style>
